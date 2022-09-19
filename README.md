@@ -5,9 +5,9 @@
 * Create `compile_commands.json` for LSPs
 
 ## Instructions
-Run the script in the top level directory of your project
+Make sure to the script in the top level directory of your project.
 
-To build in release modeLr
+To build in release mode:
 
 ```
 sh ./build.sh release
