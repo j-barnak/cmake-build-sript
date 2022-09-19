@@ -1,15 +1,19 @@
 # cmake-build-sript
-A simple shell script that builds your project either in debug mode or in release mode. This script also supports will automatically build conan dependencies.
+
+* Simple shell script thuilds your project either in debug mode or in release mode
+* Supports will automatically build conan dependencies
+* Create `compile_commands.json` for LSPs
 
 ## Instructions
+Run the script in the top level directory of your project
 
-To build in release mode
+To build in release modeLr
 
 ```
 sh ./build.sh release
 ```
 
-To build in debug  mode
+To build in debug mode:
 
 ```
 sh ./build.sh debug
