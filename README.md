@@ -19,4 +19,4 @@ To build in debug mode:
 sh ./build.sh debug
 ```
 
-This script uses `ninja-build` to build the project. To change this, omit or change `-GNina` to your liking
+This script uses `ninja-build` to build the project. To change this, omit or change `-GNina` to your liking.
