@@ -15,6 +15,7 @@ then
 
     cmake -B debug -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=1 . -GNinja
     cd debug/
+    mv compile_commands.json ../
     ninja
     cd -
 
@@ -32,6 +33,7 @@ then
 
     cmake -B release -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=1 . -GNinja
     cd release/
+    mv compile_commands.json ../
     ninja
     cd -
 
