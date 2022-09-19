@@ -2,7 +2,7 @@
 
 * Simple shell script thuilds your project either in debug mode or in release mode
 * Supports will automatically build conan dependencies
-* Create `compile_commands.json` for LSPs
+* Creates `compile_commands.json` for LSPs
 
 ## Instructions
 Make sure to the script in the top level directory of your project.
