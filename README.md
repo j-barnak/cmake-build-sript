@@ -1,7 +1,7 @@
 # cmake-build-sript
 A simple shell script that builds your project either in debug mode or in release mode
 
-# Instructions
+## Instructions
 
 To build in release mode
 
