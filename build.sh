@@ -20,7 +20,6 @@ then
     cmake -B release -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=1 . -GNinja
     cd release/
     ninja
-    mv ./glop ../
     cd -
 
 else
