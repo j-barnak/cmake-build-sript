@@ -9,7 +9,7 @@ then
 
     if [ -f "conanfile.txt" ] || [ -f "conanfile.py" ]; then
         cd debug/
-        conan install .. -pr:b=default
+        conan install .. -pr:b=default --build=missing
         cd -
     fi
 
