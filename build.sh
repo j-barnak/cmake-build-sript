@@ -8,17 +8,13 @@ then
     fi
 
     if [ -f "conanfile.txt" ] || [ -f "conanfile.py" ]; then
-        cd debug/
-        conan install .. -pr:b=default --build=missing
-        cd -
+        conan install . --install-folder debug -pr:b=default --build=missing -s build_type=Debug
     fi
 
-    cmake -B debug -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=1 . -GNinja
-    cd debug/
-    mv compile_commands.json ../
-    ninja
-    cd -
+    cmake -B debug -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake . -GNinja
+    mv debug/compile_commands.json .
 
+#Usage: build.sh release
 elif [ "$1"  = "release" ]
 then
     if [ ! -d "release" ]; then
@@ -26,16 +22,13 @@ then
     fi
 
     if [ -f "conanfile.txt" ] || [ -f "conanfile.py" ]; then
-        cd debug/
-        conan install .. -pr:b=default
-        cd -
+        conan install . --install-folder debug -pr:b=default --build=missing -s build_type=Release        
     fi
+    
+    cmake -B debug -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake . -GNinja
 
     cmake -B release -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=1 . -GNinja
-    cd release/
-    mv compile_commands.json ../
-    ninja
-    cd -
+    mv release/compile_commands.json .
 
 else
     echo "To build in debug:  ./build debug"
