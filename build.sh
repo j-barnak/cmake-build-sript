@@ -31,6 +31,6 @@ then
     mv release/compile_commands.json .
 
 else
-    echo "To build in debug:  ./build debug"
-    echo "To build in relase: ./build release"
+    echo "To build in debug:  sh ./build.sh debug"
+    echo "To build in relase: sh ./build.sh release"
 fi
