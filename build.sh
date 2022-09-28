@@ -22,12 +22,11 @@ then
     fi
 
     if [ -f "conanfile.txt" ] || [ -f "conanfile.py" ]; then
-        conan install . --install-folder debug -pr:b=default --build=missing -s build_type=Release        
+        conan install . --install-folder release -pr:b=default --build=missing 
     fi
     # Omit -GNina from the following line to generate different build files (e.g., if you want to use Makefiles)
-    cmake -B debug -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake . -GNinja
+    cmake -B release -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake . -GNinja
 
-    cmake -B release -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=1 . -GNinja
     mv release/compile_commands.json .
 
 else
