@@ -9,9 +9,13 @@ then
 
     if [ -f "conanfile.txt" ] || [ -f "conanfile.py" ]; then
         conan install . --install-folder debug -pr:b=default --build=missing -s build_type=Debug
+        cmake -B debug -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake . -GNinja
+
+    else
+        # Omit -GNina from the following line to generate different build files (e.g., if you want to use Makefiles)
+        cmake -B debug -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=1 . -GNinja
     fi
-    # Omit -GNina from the following line to generate different build files (e.g., if you want to use Makefiles)
-    cmake -B debug -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake . -GNinja
+
     mv debug/compile_commands.json .
 
 # Usage: build.sh release
@@ -23,9 +27,12 @@ then
 
     if [ -f "conanfile.txt" ] || [ -f "conanfile.py" ]; then
         conan install . --install-folder release -pr:b=default --build=missing 
+        cmake -B release -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake . -GNinja
+    
+    else
+        # Omit -GNina from the following line to generate different build files (e.g., if you want to use Makefiles)
+        cmake -B release -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=1 . -GNinja
     fi
-    # Omit -GNina from the following line to generate different build files (e.g., if you want to use Makefiles)
-    cmake -B release -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake . -GNinja
 
     mv release/compile_commands.json .
 
