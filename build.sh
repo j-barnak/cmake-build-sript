@@ -1,8 +1,8 @@
 #!/usr/bin/bash
 
 # Usage: build.sh debug
-if [ "$1"  = "debug" ]
-then
+if [ "$1"  = "debug" ] || [ "$1"  = "d" ]; then
+
     if [ ! -d "debug" ]; then
         mkdir debug
     fi
@@ -19,8 +19,8 @@ then
     mv debug/compile_commands.json .
 
 # Usage: build.sh release
-elif [ "$1"  = "release" ]
-then
+elif [ "$1"  = "release" ] || [ "$1"  = "r" ]; then
+
     if [ ! -d "release" ]; then
         mkdir release
     fi
@@ -35,6 +35,15 @@ then
     fi
 
     mv release/compile_commands.json .
+
+elif [ "$1"  = "build" ] || [ "$1"  = "b" ]; then
+
+    if [ -d "release" ]; then
+        cmake --build release/
+
+    elif [ -d "debug" ]; then
+        cmake --build debug/ 
+    fi
 
 else
     echo "To build in debug:  sh ./build.sh debug"
